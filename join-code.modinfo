@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="bobobunicorn-" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name></Name>
+		<Description></Description>
+		<Authors>BobobUnicorn</Authors>
+		<Package>Mod</Package>
+		<AffectsSavedGames>0</AffectsSavedGames>
+	</Properties>
+	<Dependencies>
+		<Mod id="core" title="LOC_MODULE_CORE_NAME" />
+	</Dependencies>
+	<ActionCriteria>
+		<Criteria id="always">
+			<AlwaysMet />
+		</Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="id" scope="game" criteria="always">
+			<Actions>
+				<UIScripts>
+					<Item></Item>
+				</UIScripts>
+			</Actions>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>
+
