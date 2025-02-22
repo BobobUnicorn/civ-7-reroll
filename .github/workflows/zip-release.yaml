@@ -1,0 +1,33 @@
+name: Release
+on:
+  push
+
+env:
+  ZIP_NAME: ${{ env.FILENAME }}.zip
+  FOLDER_NAME: ${{ env.FILENAME }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@master
+    - name: Prepare Directory
+      shell: bash
+      run: |
+        shopt -s extglob
+        mkdir "${{ env.FOLDER_NAME }}"
+        mv !(*.git*|${{ env.FOLDER_NAME }}|screenshots|.*) "${{ env.FOLDER_NAME }}"
+        shopt -u extglob
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.7.5
+      with:
+        type: 'zip'
+        filename: ${{ env.ZIP_NAME }}
+        path: ${{ env.FOLDER_NAME }}
+    - name: Push Release
+      uses: ncipollo/release-action@v1
+      if: ${{ env.GITHUB_REF_TYPE == 'tag' }}
+      with:
+        artifacts: ${{ env.ZIP_NAME }}
